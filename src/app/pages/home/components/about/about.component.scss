@@ -1,0 +1,46 @@
+@import 'variables';
+@import 'mixins';
+
+.about {
+	&__border {
+		position: relative;
+		border: 3px solid $light-medium;
+		padding: 2rem;
+		text-align: center;
+		&:before {
+			content: '';
+			position: absolute;
+			top: 12px;
+			left: -4px;
+			height: calc(100% - 24px);
+			width: calc(100% + 8px);
+			background: $white;
+			transition: 0.5s ease-in-out;
+			transform: scaleY(1);
+		}
+		&:after {
+			content: '';
+			position: absolute;
+			left: 12px;
+			top: -4px;
+			width: calc(100% - 24px);
+			height: calc(100% + 8px);
+			background: $white;
+			transition: 0.5s ease-in-out;
+			transition-delay: 0.5s;
+			transform: scaleX(1);
+		}
+		&--move {
+			&:before {
+				transform: scaleY(0);
+			}
+			&:after {
+				transform: scaleX(0);
+			}
+		}
+	}
+	&__content {
+		position: relative;
+		z-index: 1;
+	}
+}

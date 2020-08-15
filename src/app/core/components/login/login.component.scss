@@ -1,0 +1,204 @@
+@import 'variables';
+@import 'mixins';
+
+.popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999;
+	background: rgba(0, 0, 0, 0.75);
+	height: 100%;
+	visibility: visible;
+	opacity: 1;
+	overflow: scroll;
+	transition: all .3s ease;
+	&__container {
+		position: absolute;
+		top: 2rem;
+		left: 50%;
+		padding: 1.5rem;
+		transform: translateX(-50%);
+		background-image: linear-gradient(60deg,$dark-base,$dark-medium);
+		border-radius: 3rem;
+		color: $white;
+		text-align: center;
+		min-width: 17.5rem;
+		width: 50rem;
+		@include media-medium {
+			top: 1.25rem;
+			left: 1rem;
+			right: 1rem;
+			width: auto;
+			transform: translateX(0%);
+		}
+		&--inner {
+			position: relative;
+			padding: 0.75rem 10rem 0.75rem;
+			@include media-medium {
+				padding-left: 6.25rem;
+				padding-right: 6.25rem;
+			}
+			@include media-small {
+				padding-left: 0px;
+				padding-right: 0px;
+			}
+		}
+	}
+	&__close {
+		position: absolute;
+		right: 0.75rem;
+		top: 0.25rem;
+		@include font-h2;
+		line-height: 2rem;
+		transition: 0.5s;
+		&:hover {
+			cursor: pointer;
+			transform: scale(1.5);
+		}
+	}
+	&__content, &_social, &__separator, &__message, &__form {
+		margin: 1.5rem 0;
+	}
+	&__title {
+		letter-spacing: 2px;
+	}
+	&__text {
+		@include font-large;
+		@include media-small {
+			@include font-base;
+		}
+	}
+	&__social {
+		display: flex;
+		justify-content: space-evenly;
+	}
+	&__button {
+		display: block;
+		padding: 1rem 0;
+		margin-top: 3rem;
+		margin-bottom: 0.75rem;
+		width: 100%;
+	}
+	&__link {
+		@include font-base;
+		color: $light-medium;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	&__signin{
+		&.closed {
+			display: none;
+		}
+	}
+}
+.error {
+	display: none;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+	
+	background: $error;
+	border: 1px solid $white;
+	border-radius: 1rem;
+	&__icon {
+		margin-right: 1rem;
+	}
+}
+.closed {
+	visibility: hidden;
+	opacity: 0;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	&__item {
+		display: flex;
+		flex-flow: column-reverse;
+		margin-bottom: 1rem;
+		width: 100%;
+	}
+	// Add a transition to the label and input.
+	&__label, &__field {
+		transition: all 0.5s;
+		touch-action: manipulation;
+	}
+	&__field {
+		padding: 1rem;
+
+		background-color: transparent;
+		border: 0;
+		border-bottom: 1px solid $white;
+		color: $white;
+		@include font-base;
+		&:focus {
+			border: 0;
+			border-bottom: 1px solid $white;
+			outline: none;
+			&::placeholder {
+				color: rgba($color: $white, $alpha: 0.6);
+			}
+			& + .form__label {
+				color: $light-base;
+				transform: translate(0, 0) scale(1);
+			}
+		}
+		&:not(:placeholder-shown) + .form__label {
+			color: $light-base;
+			transform: translate(0, 0) scale(1);
+		}
+		&:hover {
+			& + .form__label {
+				color: $light-base;
+			}
+		}
+		&::placeholder {
+			color: transparent;
+			@include font-base;
+			letter-spacing: 0.10rem;
+		}
+	}
+	&__label {
+		@include font-xsmall;
+		text-align: left;
+		text-transform: uppercase;
+		letter-spacing: 0.15rem;
+		transform-origin: left;
+		transform: translate(0rem, 2rem) scale(1.5);
+	}
+	&__button {
+		display: block;
+		padding: 1.125rem 0;
+		margin-top: 3rem;
+		margin-bottom: 1.125rem;
+		width: 100%;
+		@include media-medium {
+			margin-top: 2rem;
+		}
+	}
+}
+.form__item--error {
+	.form {
+		&__label {
+			color: $error;
+		}
+		&__field {
+			border-color: $error;
+			&:not(:placeholder-shown) + .form__label {
+				color: $error;
+			}
+			&:focus, &:hover {
+				border-color: $white;
+				& + .form__label {
+					color: $error;
+				}
+			}
+		}
+	}
+}

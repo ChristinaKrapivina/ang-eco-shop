@@ -1,0 +1,40 @@
+@import 'variables';
+@import 'mixins';
+
+.footer {
+  @include shadow($top: true);
+  background-color: $dark-base;
+  color: $white;
+  &__text {
+    text: {
+        align: center;
+        transform: uppercase;
+    }
+    &--lg {
+      @include font-large;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: 0.5s;
+      &:hover{ 
+        color: $light-medium;
+      }
+      @include media-medium {
+        @include font-base;
+      }
+    }
+    &--sm {
+      position: relative;
+      @include font-small;
+      letter-spacing: 0.7px;
+      &::before {
+        content: '';
+        position: absolute;
+        top: -48px;
+        left: 0;
+        right: 0;
+        background: $light-medium;
+        height: 1px;
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@import 'variables';
+@import 'mixins';
+
+.home {
+	background-image: 
+		url('../../../../../assets/img/home__bg.png'), 
+		linear-gradient($light-base 0%, $light-medium 40%, $white 100%);
+	background-repeat: no-repeat;
+	background-blend-mode: multiply;
+	background-size: cover;
+	height: 100vh;
+	position: relative;
+}
+.home {
+	&__content {
+		position: absolute;
+		bottom: 15%;
+		right: 5%;
+
+		color: $black;
+		padding: 4rem;
+		text-align: center;
+		width: fit-content;
+		@include media-medium {
+			padding: 2rem;
+			width: 50%;
+		}
+		@include media-small {
+			background: rgba(255, 255, 255, 0.95);
+			border-radius: 0 10px 10px 0;
+			left: 0;
+		}
+	}
+	&__title {
+		@include font-h1;
+		@include media-small {
+			@include font-h2;
+		}
+	}
+	&__text {
+		@include media-small {
+			@include font-xlarge;
+		}
+	}
+}

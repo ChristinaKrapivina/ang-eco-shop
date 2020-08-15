@@ -1,0 +1,43 @@
+<header>
+  <nav
+    class="navbar fixed-top navbar-expand-lg py-3"
+    [ngClass]="{'iswhite': isWhite}">
+    <a
+      class="navbar-brand logo ml-md-0 ml-lg-5"
+      [routerLink]="['/home']"
+      >BlueBerry <span class="logo-small">Eco-shop</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse flex-grow-0 ml-auto mr-5" id="mainNav">
+      <ul class="navbar-nav menu">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/home']"
+            routerLinkActive="active"
+            >Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            [routerLink]="['/shop']"
+            routerLinkActive="active"
+            >Shop
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Home & Kitchen</a>
+            <a class="dropdown-item" href="#">Bathroom</a>
+            <a class="dropdown-item" href="#">On the Go</a>
+            <a class="dropdown-item" href="#">Smth</a>
+          </div>
+        </li>
+      </ul>
+      <button type="button"
+        class="btn button ml-3"
+        [ngClass]="{'button--dark': isWhite, 'button--light': !isWhite}"
+        >Log In</button>
+    </div>
+  </nav>
+</header>

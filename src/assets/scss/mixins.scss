@@ -1,0 +1,47 @@
+@mixin shadow($top){
+  @if $top {
+    box-shadow: 0px -5px 15px 0px $black;
+  } @else {
+    box-shadow: 0px 0px 15px 0px $black;
+  }
+}
+
+@mixin media-small {
+  @media (max-width: 600px) { @content; }
+}
+@mixin media-medium {
+  @media (max-width: 960px) { @content; }
+}
+@mixin media-large {
+  @media (max-width: 1280px) { @content; }
+}
+
+@mixin font ($size, $height) {
+  font: {
+      family: 'Roboto', sans-serif;
+      size: #{$size}rem;
+      weight: 400;
+  }
+  line-height: #{$height}rem;
+}
+@mixin font-h1 {
+  @include font(2.5, 3);
+}    
+@mixin font-h2 {
+  @include font(2, 2.5);
+}
+@mixin font-xlarge {
+  @include font(1.5, 2);
+}
+@mixin font-large {
+  @include font(1.125, 1.75);
+}
+@mixin font-base {
+  @include font(1, 1.5);
+}
+@mixin font-small {
+  @include font(0.8, 1.25);
+}
+@mixin font-xsmall {
+  @include font(0.75, 0.8);
+}
