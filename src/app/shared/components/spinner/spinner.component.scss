@@ -1,0 +1,46 @@
+@import 'variables';
+@import 'mixins';
+
+.spinner {
+  position: relative;
+  height: 5rem;
+  width: 5rem;
+  margin: 4rem auto;
+
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 0.5rem;
+  color: $light-medium;
+  transform: translateZ(0);
+  &::before, &::after {
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+    height: 5.2rem;
+    width: 2.7rem; 
+    background: $white;
+  }
+  &::before {
+    top: -0.1rem;
+    left: -0.1rem;
+
+    border-radius: 10rem 0 0 10rem;
+    transform-origin: 2.6rem 2.6rem;
+    animation: load 2s infinite ease 1.5s;
+  }
+  &::after {
+    top: -0.1rem;
+    right: -0.1rem;
+
+    border-radius: 0 10rem 10rem 0;
+    transform-origin: 0.1rem 2.6rem;
+    animation: load 2s infinite ease;
+  }
+}
+@keyframes load {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

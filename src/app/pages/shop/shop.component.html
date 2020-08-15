@@ -1,12 +1,10 @@
-<div class="shop">
-  <div class="shop__container">
-    <section class="shop__intro">
-      <div class="intro__content">
-        <h2 class="intro__title">Shop Online</h2>
-        <p class="intro__text text">Lorem ipsum dolor sit amet</p>
-      </div>
-    </section>
-    <div class="spinner"></div>
-    <div class="shop__groups"></div>
-  </div>
+<div class="container-fluid shop px-0">
+  <section class="shop__intro d-flex justify-content-center align-items-center">
+    <div class="intro__content">
+      <h2 class="intro__title">Shop Online</h2>
+      <p class="intro__text text">Lorem ipsum dolor sit amet</p>
+    </div>
+  </section>
 </div>
+<app-spinner *ngIf="isLoading"></app-spinner>
+<router-outlet></router-outlet>

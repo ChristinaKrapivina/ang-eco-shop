@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
 
 import {
   SectionsComponent,
@@ -8,14 +7,9 @@ import {
   ProductsComponent,
   ProductComponent
 } from 'src/app/pages/shop/components';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ShopComponent } from './shop.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: ShopComponent,
-  },
-];
+import { ShopRoutingModule } from './shop-routing.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +21,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
+    SharedModule,
+    ShopRoutingModule,
   ],
   exports: [ ShopComponent ]
 })
