@@ -10,6 +10,7 @@ import {
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ShopComponent } from './shop.component';
 import { ShopRoutingModule } from './shop-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ShopRoutingModule } from './shop-routing.module';
   imports: [
     CommonModule,
     SharedModule,
+    HttpClientModule,
     ShopRoutingModule,
   ],
   exports: [ ShopComponent ]

@@ -1,14 +1,16 @@
 <div class="shop__group group my-3">
   <div class="group__column group__column--narrow">
-    <img class="group__image" alt="${section.title}" src="../../../assets/img/shop__bath--brush1.jpg">
+    <img class="group__image" [alt]="section.title" [src]="section.img">
   </div>
   <section class="group__column group__column--wide">
     <div class="group__content"> 
-      <h3 class="group__title title">Body & Bath</h3>
-      <p class="group__text text">Reduce your amount of waste with our Zero Waste Bath & Beauty products, from sustainable bamboo toothbrushes to plastic-free hair care products and more.</p>
+      <h3 class="group__title title">{{ section.title }}</h3>
+      <p class="group__text text">{{ section.text }}</p>
     </div>
   </section>
   <div class="group__cta">
-    <a class="group__link" data-id="${section.id}">See Products</a>
+    <a class="group__link" data-id="${section.id}"
+      routerLink="/{{section.id}}"
+    >See Products</a>
   </div>
 </div>
