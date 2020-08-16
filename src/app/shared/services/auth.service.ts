@@ -8,15 +8,32 @@ import { Login } from '../models';
   providedIn: 'root'
 })
 export class AuthService {
-  firebaseURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
   apiKey = 'AIzaSyDUGIhnVt4ggWHpU_eZzKx5RJLkeWrKTEs';
+  redirectUrl = '/home';
+  token: string | null = null;
 
   constructor( private http: HttpClient ) { }
-  isLoggedIn = false;
-  redirectUrl = '/home';
 
-  login(details: Login): Observable<Object> {
-    return this.http.post(this.firebaseURL + this.apiKey,
+  signin(details: Login): Observable<Object> {
+    let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
+    return this.firebasePost(url, details);
+  }
+
+  signup(details: Login): Observable<Object> {
+    let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
+    return this.firebasePost(url, details);
+  }
+
+  signout():void {
+    this.token = null;
+  }
+
+  checkLogIn(): string {
+    return this.token;
+  }
+
+  private firebasePost(url, details) {
+    return this.http.post(url + this.apiKey,
       {
         email: details.email,
         password: details.password,
@@ -27,10 +44,6 @@ export class AuthService {
         'Content-Type': 'application/json'
       })
     })
-  }
-
-  checkLogIn(): boolean {
-    return this.isLoggedIn;
   }
 
 }

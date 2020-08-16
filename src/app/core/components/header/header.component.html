@@ -10,8 +10,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
   
-    <div class="collapse navbar-collapse flex-grow-0 ml-auto mr-5" id="mainNav">
-      <ul class="navbar-nav menu">
+    <div class="collapse navbar-collapse flex-grow-0 ml-auto mr-5 mt-4 mt-lg-0" id="mainNav">
+      <ul class="navbar-nav menu ml-3">
         <li class="nav-item">
           <a
             class="nav-link"
@@ -28,12 +28,26 @@
         </li>
       </ul>
       <button
-        *ngIf="!authService.isLoggedIn"
+        *ngIf="!authService.token"
         type="button"
         class="btn button ml-3"
-        [routerLink]="['/login']"
+        [routerLink]="['/signin']"
         [ngClass]="{'button--dark': isWhite, 'button--light': !isWhite}"
-        >Log In</button>
+        >Sign In</button>
+      <button
+        *ngIf="!authService.token"
+        type="button"
+        class="btn button ml-3"
+        [routerLink]="['/signup']"
+        [ngClass]="{'button--dark': isWhite, 'button--light': !isWhite}"
+        >Sign Up</button>
+      <button
+        *ngIf="authService.token"
+        type="button"
+        class="btn button ml-3"
+        (click)="onLogOut()"
+        [ngClass]="{'button--dark': isWhite, 'button--light': !isWhite}"
+        >Sign Out</button>
     </div>
   </nav>
 </header>

@@ -26,6 +26,15 @@ export interface FirebaseProduct {
   updateTime: string;
 }
 
+export interface FirebaseLoginResponse {
+  idToken: string;
+  email: string;
+  refreshToken: string;
+  expiresIn: string;
+  localId: string;
+  registered: boolean;
+}
+
 interface ArrayValue {
   arrayValue: {
     values: {["stringValue"]: string}[];

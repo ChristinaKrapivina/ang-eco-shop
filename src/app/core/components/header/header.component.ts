@@ -21,4 +21,7 @@ export class HeaderComponent implements OnInit {
       this.isWhite = false;
     }
   }
+  onLogOut() {
+    this.authService.signout();
+  }
 }
