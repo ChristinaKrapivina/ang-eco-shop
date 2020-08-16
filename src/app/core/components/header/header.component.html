@@ -27,7 +27,9 @@
             >Shop</a>
         </li>
       </ul>
-      <button type="button"
+      <button
+        *ngIf="!authService.isLoggedIn"
+        type="button"
         class="btn button ml-3"
         [routerLink]="['/login']"
         [ngClass]="{'button--dark': isWhite, 'button--light': !isWhite}"

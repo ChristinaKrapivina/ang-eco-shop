@@ -4,6 +4,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { PhonePipe } from './pipes/phone.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 
@@ -20,6 +21,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     PhonePipe,
     SpinnerComponent,
     NgxPaginationModule,
+  ],
+  providers: [
+    AuthGuard,
   ]
 })
 export class SharedModule { }
