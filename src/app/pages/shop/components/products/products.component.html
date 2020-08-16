@@ -1,7 +1,18 @@
 <div class="container">
   <div class="row d-flex align-items-stretch justify-content-center mt-5">
-    <div class="col mb-5" *ngFor="let product of products">
+    <div class="col mb-5" *ngFor="let product of products | paginate: { itemsPerPage: 6, currentPage: page }">
       <app-product [product]="product"></app-product>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-5 d-flex justify-content-center">
+      <pagination-controls
+        class="custom-pagination"
+        (pageChange)="page = $event"
+        autoHide = true
+        previousLabel=""
+        nextLabel=""
+      ></pagination-controls>
     </div>
   </div>
 </div>

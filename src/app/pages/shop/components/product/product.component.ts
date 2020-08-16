@@ -8,6 +8,7 @@ import { Product } from 'src/app/shared/models';
 })
 export class ProductComponent implements OnInit {
   @Input() product: Product;
+  isAdmin = false;
   
   constructor() { }
 

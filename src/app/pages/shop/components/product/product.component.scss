@@ -1,0 +1,27 @@
+@import 'variables';
+@import 'mixins';
+
+.card {
+  width: 18rem;
+  height: 100%;
+  border-color: $light-medium;
+}
+.img-wrapper {
+  height: 190px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-title {
+  @include font-base;
+  font-weight: 600;
+  height: 48px;
+}
+.card-footer {
+  background: $light-medium;
+  color: $white;
+  a:hover {
+    color: $dark-base;
+  }
+}

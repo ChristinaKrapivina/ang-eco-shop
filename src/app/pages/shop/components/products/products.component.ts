@@ -14,6 +14,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   products: Product[];
   activeSection: string;
   subscription: Subscription;
+  page: number = 1;
 
   constructor(
     private route: ActivatedRoute,

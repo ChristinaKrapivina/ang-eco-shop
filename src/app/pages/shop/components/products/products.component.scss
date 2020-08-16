@@ -1,195 +1,29 @@
 @import 'variables';
 @import 'mixins';
 
-.section {
-	position: relative;
-	background-color: $light-medium;
-	border: 1px solid $light-medium;
-	border-radius: 0.75rem;
-	color: $white;
-	max-width: 150px;
-	width: 100%;
-	transition: 0.5s;
-	@include media-small {
-		max-width: 120px;
-	}
-	&:hover{
-		background-color: $light-base;
-		.section__image {
-			opacity: 0.6;
-		}
-		.section__footer {
-			transform: rotateY(0deg);
-		}
-	}
-	&--active {
-		background-color: $light-base;
-		.section__image {
-			opacity: 0.6;
-		}
-	}
-	&__imageContainer {
-		border-radius: 0.75rem 0.75rem 0 0;
-		overflow: hidden;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 50%;
-		@include media-small {
-			display: none;
-		}
-	}
-	&__image {
-		height: 100%;
-		width: 100%;
-	}
-	&__body {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 50%;
-		@include media-small {
-			height: 100%;
-		}
-	}
-	&__title {
-		@include font-xlarge;
-		margin: 0 1rem;
-		text-align: center;
-		@include media-small {
-			@include font-base;
-		}
-	}
-	&__footer {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		background: $light-base;
-		border-radius: 0.75rem;
-		padding: 2rem;
-		transform: rotateY(90deg);
-		transition: 0.75s;
-		@include media-small {
-			padding: 0.5rem;
-		}
-	}
-	&__button {
-		@include font-xlarge;
-		text: {
-			align: center;
-			transform: uppercase;
-		}
-		&::before {
-			content: "Go to ";
-			background: $dark-base;
-			display: block;
-			font-size: 0.75rem;
-			margin: 0 auto 1.5rem;
-			width: 3rem;
-			@include media-small {
-				margin-bottom: 0.5rem;
-			}
-		}
-		@include media-small {
-			@include font-base;
-		}
-	}
+.custom-pagination ::ng-deep .ngx-pagination{
+  margin-bottom: 0;
+  .pagination-previous, .pagination-next {
+    padding: 0;
+    opacity: 0.8;
+    &:hover:not(.disabled) {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+  .current {
+    background: $light-medium;
+    border: 1px solid $light-medium;
+    border-radius: 50%;
+  }
+  a {
+    transition: 0.5s;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      background: transparent;
+      transform: scale(1.5, 1.5);
+    }
+  }
 }
-.card {
-	display: grid;
-	grid-template-columns: 1rem 1fr 1rem;
-	grid-template-rows: repeat(2, 1fr) 1rem repeat(4, 1fr);
-	row-gap: 1rem;
-
-	background-color: $white;
-	border: 2px solid $light-medium;
-	border-radius: 0.75rem;
-	overflow: hidden;
-	// max-width: 266px;
-	// min-width: 250px;
-	width: 100%;
-	&__imagewrap{
-		grid-column: 1 / 4;
-		grid-row: 1 / 4;
-
-		position: relative;
-		overflow: hidden;
-	}
-	&__body {
-		grid-column: 2;
-		grid-row: 4 / 6;
-
-		display: grid;
-		grid-template-columns: repeat(1, 1fr);
-		grid-template-rows: repeat(2, 1fr);
-		row-gap: 1rem;
-
-		border-bottom: 2px solid $light-medium;
-	}
-	&__title {
-		@include font-base;
-		font-weight: 600;
-	}
-	&__text {
-		@include font-base;
-		font-weight: 600;
-	}
-	&__footer{
-		grid-column: 2;
-		grid-row: 6 / 8;
-
-		display: grid;
-		grid-template-columns: repeat(1, 1fr);
-		grid-template-rows: repeat(2, 1fr) 1rem;
-		align-items: center;
-	}
-	&__image {
-		height: auto; 
-		width: 100%; 
-
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-	&__details {
-		justify-self: center;
-		text-transform: uppercase;
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-	&__button {
-		@include font-base;
-	}
-}
-.pagination {
-	display: flex;
-	&__item {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		background: $dark-medium;
-		border-radius: 50%;
-		color: $white;
-		height: 2rem;
-		width: 2rem;
-		margin: 0 0.5rem;
-		transition: 0.5s;
-		&:hover{
-			transform: scale(2, 2);
-		}
-		&--active {
-			background: $light-base;
-		}
-	}
-}
-

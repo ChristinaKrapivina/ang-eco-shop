@@ -50,17 +50,7 @@
     }
   }
 }
-.dropdown-menu {
-  background-image: linear-gradient(60deg, $dark-base, $dark-light);
-  border-color: $dark-medium;
-  a {
-    color: $white;
-    &:hover {
-      background: transparent;
-      color: $light-medium;
-    }
-  }
-}
+
 .iswhite {
   background-color: hsla(0,0%,100%,.95);
   color: $black;

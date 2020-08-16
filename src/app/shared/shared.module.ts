@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { PhonePipe } from './pipes/phone.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
@@ -14,12 +14,12 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule,
+    NgxPaginationModule,
   ],
   exports: [
-    FontAwesomeModule,
     PhonePipe,
     SpinnerComponent,
+    NgxPaginationModule,
   ]
 })
 export class SharedModule { }
