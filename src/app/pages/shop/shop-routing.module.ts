@@ -10,7 +10,7 @@ export const routes: Routes = [
     path: 'shop',
     component: ShopComponent,
     children: [
-      { path: ':sectionID', component: ProductsComponent },
+      { path: ':sectionName', component: ProductsComponent},
       { path: '', component: SectionsComponent },
     ]
   }

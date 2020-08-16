@@ -1,21 +1,7 @@
-
-<div class="category__breadcrumbs">
-  <ul class="breadcrumb">
-    <li class="breadcrumb__home">
-      <a class="breadcrumb__link" href="index.html"><i class="breadcrumb__icon fas fa-home"></i></a>
-    </li>
-    <li class="breadcrumb__item">
-      <a href="shop.html">Shop</a>
-    </li>
-    <li class="breadcrumb__item" id="currentSection"> </li>
-  </ul>
-</div>
-<div class="category__body">
-  <aside class="category__aside">
-    <div class="category__sections"></div>
-  </aside>
-  <div class="category__main">
-    <div class="category__cards"></div>
+<div class="container">
+  <div class="row d-flex align-items-stretch justify-content-center mt-5">
+    <div class="col mb-5" *ngFor="let product of products">
+      <app-product [product]="product"></app-product>
+    </div>
   </div>
-  <div class="category__pagination pagination"></div>
 </div>

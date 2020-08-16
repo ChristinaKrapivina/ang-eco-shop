@@ -1,1 +1,11 @@
-<p>product works!</p>
+<div class="card" style="width: 18rem;">
+  <img [src]="product.image" class="card-img-top" [alt]="product.title">
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">{{ product.price }}</p>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Buy</a>
+    </div>
+  </div>
+</div>

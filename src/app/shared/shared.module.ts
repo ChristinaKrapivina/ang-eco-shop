@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { PhonePipe } from './pipes/phone.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 
@@ -11,9 +13,11 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     SpinnerComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FontAwesomeModule,
   ],
   exports: [
+    FontAwesomeModule,
     PhonePipe,
     SpinnerComponent,
   ]

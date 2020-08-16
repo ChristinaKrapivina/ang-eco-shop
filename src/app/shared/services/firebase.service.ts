@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { map } from 'rxjs/operators';
-import { Section } from '../models/sections';
+import { Section, FirebaseSection, FirebaseSectionsResponse, FirebaseProductsResponse, Product } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -33,11 +33,49 @@ export class FirebaseService {
   //     params: searchParams
   //   });
   // }
+  getSectionProducts(sectionName: string): Observable<Product[]> {
+    return this.http.get(`${this.firebaseURL}/${sectionName}`)
+      .pipe(
+        map((response: FirebaseProductsResponse) => {
+          let arr: Product[] = [];
+          response.documents.forEach(doc => {
+            let product: Product = {};
+            product.id = doc.fields.id.integerValue;
+            product.title = doc.fields.title.stringValue;
+            product.price = doc.fields.price.stringValue;
+            product.image = [];
+            doc.fields.img.arrayValue.values.forEach (value => {
+              product.image.push(value.stringValue);
+            })
+            product.description = [];
+            doc.fields.descr.arrayValue.values.forEach (value => {
+              product.description.push(value.stringValue);
+            })
+            arr.push(product);
+          })
+          return arr;
+        })
+      )
+  }
 
+  getSection(section: string):Observable<Section> {
+    return this.http.get(`${this.firebaseURL}/sections/${section}`)
+      .pipe(
+        map((response: FirebaseSection) => {
+          let section: Section = {};
+          section.id = response.fields.id.stringValue;
+          section.img = response.fields.img.stringValue;
+          section.title = response.fields.title.stringValue;
+          section.text = response.fields.text.stringValue;
+          return section;
+        })
+      )
+
+  }
   getAllSections(): Observable<Section[]>{
     return this.http.get(`${this.firebaseURL}/sections`)
       .pipe(
-        map(response => {
+        map((response: FirebaseSectionsResponse) => {
           let arr: Section[] = [];
           response.documents.forEach(doc => {
             let section: Section = {};

@@ -21,7 +21,7 @@ import { SharedModule } from './shared/shared.module';
     HomeModule,
     ShopModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,17 +8,14 @@ import { FirebaseService } from 'src/app/shared/services/firebase.service';
   styleUrls: ['./sections.component.scss']
 })
 export class SectionsComponent implements OnInit {
-  isLoading = false;
   sections: Section[];
 
   constructor( private dbService: FirebaseService ) { }
 
   ngOnInit(): void {
-    this.isLoading = true;
     this.dbService.getAllSections()
       .subscribe(res => {
         this.sections = res;
-        this.isLoading = false;
       });
   }
 
