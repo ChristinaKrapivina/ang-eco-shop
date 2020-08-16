@@ -1,0 +1,54 @@
+<div class="container-fluid login d-flex justify-content-center align-items-center">
+  <div class="login-container p-5">
+    <div class="content">
+      <h2 class="title mb-2">Welcome</h2>
+      <p class="text mt-0">Sign in with your email</p>
+    </div>
+    <hr>
+    <form
+      class="form"
+      #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+      <div class="form__item">
+        <input
+          type="email"
+          class="form__field form-control"
+          [ngClass]="{'is-invalid': email.invalid && email.touched}"
+          id="loginEmail"
+          placeholder="Jane Austin"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+"
+          required
+          ngModel
+          name="email"
+          #email="ngModel">
+        <label for="loginEmail" class="form__label">Email</label>
+        <div class="invalid-feedback" *ngIf="email.hasError('required')">
+          Please enter email
+        </div>
+        <div class="invalid-feedback" *ngIf="email.hasError('pattern')">
+            The email format should be email@example.com
+        </div>
+      </div>
+      
+      <div class="form__item">
+        <input
+          type="password"
+          class="form__field form-control"
+          [ngClass]="{'is-invalid': pass.invalid && pass.touched}"
+          id="loginPass"
+          placeholder="********"
+          required
+          ngModel
+          name="password"
+          #pass="ngModel">
+        <label for="loginPass" class="form__label">Password</label>
+        <div class="invalid-feedback" *ngIf="pass.hasError('required')">
+          Please enter a password
+        </div>
+      </div>
+      <button
+        class="form__button button button--dark button--signin" type="submit"
+        [disabled]="loginForm.invalid"
+        >Sign In</button>
+    </form>
+  </div>
+</div>

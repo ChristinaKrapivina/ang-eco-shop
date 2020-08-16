@@ -1,0 +1,102 @@
+@import 'variables';
+@import 'mixins';
+
+.login {
+	height: 100vh;
+	background-image: 
+			url("../../../assets/img/shop__bath--brush1.jpg"), 
+			linear-gradient($light-base 0%, $light-medium 40%, $white 100%);
+	background-repeat: no-repeat;
+	background-blend-mode: multiply;
+	background-size: cover;
+}
+.login-container {
+	background: rgba(255, 255, 255, 0.6);
+	border: 1px solid $white;
+	border-radius: 0.75rem;
+	text-align: center;
+  max-width: 60%;
+  width: 100%;
+	@include media-small {
+		max-width: 80%;
+	}
+}
+.title {
+	letter-spacing: 2px;
+}
+.text {
+	@include font-large;
+	@include media-small {
+		@include font-base;
+  }
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	&__item {
+		display: flex;
+		flex-flow: column-reverse;
+		margin-bottom: 1rem;
+		width: 100%;
+	}
+	&__label, &__field {
+		transition: all 0.5s;
+		touch-action: manipulation;
+	}
+	&__field {
+		padding: 1rem;
+
+		background-color: transparent;
+		border: 0;
+		border-bottom: 1px solid $dark-base;
+		border-radius: 0;
+		color: $dark-base;
+		@include font-base;
+		&:focus {
+			border: 0;
+			box-shadow: none;
+			border-bottom: 1px solid $light-base;
+			outline: none;
+			&::placeholder {
+				color: rgba($color: $dark-base, $alpha: 0.6);
+			}
+			& + .form__label {
+				color: $light-base;
+				transform: translate(0, 0) scale(1);
+			}
+		}
+		&:not(:placeholder-shown) + .form__label {
+			color: $light-base;
+			transform: translate(0, 0) scale(1);
+		}
+		&:hover {
+			& + .form__label {
+				color: $light-base;
+			}
+		}
+		&::placeholder {
+			color: transparent;
+			@include font-base;
+			letter-spacing: 0.10rem;
+		}
+	}
+	&__label {
+		@include font-xsmall;
+		text-align: left;
+		text-transform: uppercase;
+		letter-spacing: 0.15rem;
+		transform-origin: left;
+		transform: translate(0rem, 2rem) scale(1.5);
+	}
+	&__button {
+		display: block;
+		margin-top: 3rem;
+		margin-bottom: 1.125rem;
+		@include media-medium {
+			margin-top: 2rem;
+		}
+	}
+}
