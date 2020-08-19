@@ -1,13 +1,18 @@
 <div class="container-fluid login d-flex justify-content-center align-items-center">
+  <app-spinner
+    *ngIf="isLoading"
+    class="position-absolute"
+  ></app-spinner>
   <div class="login-container p-5">
     <div class="content">
       <h2 class="title mb-2">Welcome</h2>
-      <p class="text mt-0">{{ text }} with your email</p>
+      <p class="text mt-0">{{ signinMode ? 'Sign in' : 'Sign up' }} with your email</p>
     </div>
     <hr>
     <form
       class="form"
       #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+      <p class="text-danger" *ngIf="hasError"> {{ errorMessage }} </p>
       <div class="form__item">
         <input
           type="email"
@@ -48,7 +53,12 @@
       <button
         class="form__button button button--dark button--signin" type="submit"
         [disabled]="loginForm.invalid"
-        >{{text | titlecase }}</button>
+        >{{ (signinMode ? 'Sign in' : 'Sign up') | uppercase }}</button>
     </form>
+    <p class="text">{{ signinMode ? 'Already have an account?' : 'Don\'t have an account?' }}
+      <a class="link"
+        routerLink="{{ signinMode ? '/signup' : '/signin' }}"
+      >{{ signinMode ? 'Sign up' : 'Sign in' }}</a>
+    </p>
   </div>
 </div>

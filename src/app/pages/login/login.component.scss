@@ -3,6 +3,7 @@
 
 .login {
 	height: 100vh;
+	overflow: hidden;
 	background-image: 
 			url("../../../assets/img/shop__bath--brush1.jpg"), 
 			linear-gradient($light-base 0%, $light-medium 40%, $white 100%);
@@ -29,6 +30,13 @@
 	@include media-small {
 		@include font-base;
   }
+}
+.link {
+	color: $light-base;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 .form {
@@ -97,6 +105,17 @@
 		margin-bottom: 1.125rem;
 		@include media-medium {
 			margin-top: 2rem;
+		}
+		&[disabled] {
+			background-image: linear-gradient(60deg, rgba($dark-base, 0.5), rgba($dark-light, 0.5));
+			border-color: rgba($dark-medium, 0.5);
+			color: rgba($white, 0.5);
+			cursor: not-allowed;
+			&:hover {
+				background-image: linear-gradient(60deg, rgba($dark-base, 0.5), rgba($dark-light, 0.5));
+				border-color: rgba($dark-medium, 0.5);
+				color: rgba($white, 0.5);
+		}
 		}
 	}
 }

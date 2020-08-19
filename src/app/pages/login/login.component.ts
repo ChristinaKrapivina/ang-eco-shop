@@ -3,7 +3,8 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FirebaseLoginResponse } from 'src/app/shared/models';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +14,10 @@ import { Subscription } from 'rxjs';
 export class LoginComponent implements OnInit, OnDestroy {
   @ViewChild('loginForm') customForm: NgForm;
   subscription: Subscription;
-  page: string;
-  text: string;
+  signinMode: boolean;
+  isLoading = false;
+  hasError = false;
+  errorMessage: string;
 
   constructor(
     private authService: AuthService,
@@ -22,10 +25,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
+    this.hasError = false;
+    this.errorMessage = '';
     this.subscription = this.route.url
       .subscribe(url => {
-        this.page = url[0].path;
-        this.text = this.page === 'signin' ? 'Sign in' : 'Sign up'
+        this.signinMode = url[0].path === 'signin' ? true : false;
       });
   }
 
@@ -33,23 +37,27 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onSubmit(form: NgForm) {
-    if(this.page === 'signin') {
-      this.authService.signin(form.value)
-        .subscribe((response: FirebaseLoginResponse) => {
-          this.authService.token = response.idToken;
-          this.router.navigate([this.authService.redirectUrl]);
-        })
-    }
-    if(this.page === 'signup') {
-      this.authService.signup(form.value)
-        .subscribe((response: FirebaseLoginResponse) => {
-          this.authService.token = response.idToken;
-          this.router.navigate([this.authService.redirectUrl]);
-        })
-    }
-    
-    form.reset();
+  onSubmit(form: NgForm):void {
+    if (!form.valid) { return; }
+
+    let observable: Observable<FirebaseLoginResponse>;
+    this.isLoading = true;
+
+    if(this.signinMode) { observable = this.authService.signin(form.value) }
+    if(!this.signinMode) { observable = this.authService.signup(form.value) }
+
+    observable.subscribe(
+      () => {
+        this.isLoading = false;
+        form.reset();
+        this.router.navigate([this.authService.redirectUrl]);
+      },
+      (err: HttpErrorResponse) => {
+        this.isLoading = false;
+        this.hasError = true;
+        this.errorMessage = err.error.error.message;
+        }
+    )
   }
 
 }

@@ -5,19 +5,25 @@ import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  token: string;
+
   constructor(
     private authService: AuthService,
-    private router: Router) {}
+    private router: Router) {
+      this.authService.token$.subscribe(
+        newToken => this.token = newToken
+      )
+    }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const { url } = state;
 
-      if (this.authService.token) return true;
+      if (this.token) return true;
 
       this.authService.redirectUrl = url;
-      this.router.navigate(['/login']);
+      this.router.navigate(['/signin']);
       return false;
   }
 }

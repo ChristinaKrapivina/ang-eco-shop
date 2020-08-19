@@ -28,21 +28,21 @@
         </li>
       </ul>
       <button
-        *ngIf="!authService.token"
+        *ngIf="!token"
         type="button"
         class="btn button ml-3"
         [routerLink]="['/signin']"
         [ngClass]="{'button--dark': isWhite, 'button--light': !isWhite}"
         >Sign In</button>
       <button
-        *ngIf="!authService.token"
+        *ngIf="!token"
         type="button"
         class="btn button ml-3"
         [routerLink]="['/signup']"
         [ngClass]="{'button--dark': isWhite, 'button--light': !isWhite}"
         >Sign Up</button>
       <button
-        *ngIf="authService.token"
+        *ngIf="token"
         type="button"
         class="btn button ml-3"
         (click)="onLogOut()"
